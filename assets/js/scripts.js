@@ -4,7 +4,7 @@ class Translator {
         this.dictionary = null;
         this.requestPath = null;
 
-        this.defaultLangPath = '/assets/var/';
+        this.defaultLangPath = './assets/var/';
         this.translateAttribute = 'data-translate';
     }
 
