@@ -1,0 +1,83 @@
+{
+    "0": {
+        "language": "EN-en",
+        "service": {
+            "version": "1.1.4a",
+            "content": "7wGj32-pW2kj9",
+            "type": "single-lang",
+            "typeInt": 6,
+            "client": -1,
+            "ui": 0,
+            "collaborators": -1,
+            "view": "single-lang",
+            "language": "EN-en",
+            "__pre": 1,
+            "__proc": 0
+        },
+        "translate": {
+            "language": "EN-en",
+            "languages": {
+                "EN-en": "translate-EN-en.json",
+                "RU-ru": "translate-RU-ru.json"
+            },
+            "autor": {
+                "service": "translate-tool-prompt",
+                "client": "eda465997f7bd3bd4c0bccf4d81fce55ff59b2de",
+                "title": "my-resume",
+                "descr": "",
+                "collaborators": [
+                    "root:-1:99",
+                    "eda465997f7bd3bd4c0bccf4d81fce55ff59b2de:0:1"
+                ],
+                "kit": 0,
+                "auth": -1
+            },
+            "call": "PARSE::https://translate.ru"
+        }
+    },
+    "my-name": "Nikita Krasnov",
+    "web-developer": "web-programmer",
+    "my-letter": "Letter to employer",
+    "github-link": "GitHub",
+    "skill-shorts": "I am engaged in backend and frontend development, both separately and fulstec. Most often, I developed APIs like REST and RPC for web applications and projects. I perform work on building full-fledged sites and web applications with my business logic without using frameworks",
+    "work-expirience": "Experience",
+    "work-exp-1-company": "Weblancer Freelance Platform",
+    "work-exp-1-position": "Programmer",
+    "work-exp-1-date": "summer 2018 - may 2019",
+    "work-exp-1-descr": "Studying in the 3rd year, MRMT tried itself on the Weblancer platform. Collected everything in a row, works in Photoshop, creating sites and writing thesis, etc.",
+    "work-exp-2-company": "FELGO",
+    "work-exp-2-position": "Developer programmer",
+    "work-exp-2-date": "may 2019 - september 2020",
+    "work-exp-2-descr": "Since 2019, I have been looking for myself in freelance platforms, where I later found work on C++ and was engaged in programming server logic and solutions. He worked in the team until the middle of the summer of 2020 and left due to burnout. Until autumn, I did not write a single line on the pros and was engaged in pet projects, where I got to know php and nodejs closer. I liked the new experience and wanted to no longer write in C++",
+    "work-exp-3-company": "Freelance platform",
+    "work-exp-3-position": "web-programmer",
+    "work-exp-3-date": "august 2020 - march 2022",
+    "work-exp-3-descr": "From the fall of 2020, I am a web programmer in where I was helped to get a job from my previous work. After a couple of months, I had experience working with various programming languages, libraries and frameworks. In 2022, after the events of the end of February, in March the company did not have the opportunity to pay for work, and therefore the teams from the CIS countries had to be dissolved",
+    "study-expirience": "Study",
+    "study-exp-1-place": "Mari Radio Mechanical College",
+    "study-exp-1-date": "september 2015 - june 2019",
+    "study-exp-1-position": "Information Systems and Programming, Programmer",
+    "study-exp-1-descr": "Training began after graduating from the 9th grade of Lyceum 28 of Yoshkar-Ola. From the third year of training, they were taken to military service. After serving in September, he returned to the 3rd year of training. With fresh technical knowledge, I was sent by WorldSkills to participate in the competence of the IT solution for business on the 1C: Enterprise 8 platform, where I took 3rd place in Mari E. In the 4th year, the technical school again sent to WorldSkills in Software solutions for business in C #. Took first place in Mari el",
+    "study-exp-2-place": "Volga State Technological University",
+    "study-exp-2-date": "september 2019 - january 2020",
+    "study-exp-2-position": "Computer Science and Computer Engineering, Software Engineer",
+    "study-exp-2-descr": "After completing my studies at RMT, I entered PSTU as a software engineer, but due to the happiness of entering the FIRST year after four years of study, as well as from a tight work schedule, I could not study for a long time",
+    "skills-contacts": "Contacts",
+    "skills-city": "Yoshkar-Ola",
+    "it-stack": "Technology Stack",
+    "keys-skills": "Key skills",
+    "key-skill-work-capacity": "Working capacity",
+    "key-skill-persistence": "Persistence",
+    "key-skill-assiduity": "Assiduity",
+    "key-skill-responsibility": "Responsibility",
+    "skill-languages": "languages",
+    "language-rus": "Russian - native language",
+    "language-eng": "English - Intermediate",
+    "skill-awards": "Awards",
+    "award-worldskills": "WorldSkills",
+    "award-worldskills-2018": "WorldSkills 2018 - 3rd place in Mari El",
+    "award-worldskills-2018-descr": "1C IT Business Solutions: Enterprise 8",
+    "award-worldskills-2019": "WorldSkills 2019 - 1st place in Mari El",
+    "award-worldskills-2019-descr": "Business Software Solutions",
+    "skills-attentions": "the data displayed are subjective and carry a mapping of language knowledge with respect to C++"
+}

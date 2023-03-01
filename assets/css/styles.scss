@@ -8,6 +8,8 @@ $basic-text-style: 16px;
     --color-main: #818181;
     --color-content: #DBDBDB;
 
+    --color-input-slide: #343434;
+
     --color-click-block: #454545;
     --color-click-text: #C4C4C4;
     --color-click-block-filter: #45454538;
@@ -17,13 +19,15 @@ $basic-text-style: 16px;
     --shadow-color-content: rgba(0, 0, 0, 0.726);
 }
 
-html[data-theme='dark'] {
+html[data-theme="dark"] {
     --color-bg: #ffffff;
     --color-title: #343434;
     --color-descr: #4e4e4e;
     --color-title-min: #424242;
     --color-main: #818181;
-    --color-content: #DBDBDB;
+    --color-content: #343434;
+
+    --color-input-slide: #DBDBDB;
 
     --color-click-block: #454545;
     --color-click-text: #C4C4C4;
@@ -69,7 +73,7 @@ main {
         width: 1300px;
         max-width: 1300px;
         min-height: 1000px;
-        box-shadow: 0px 24px 36px var(----shadow-color-content);
+        box-shadow: 0px 24px 36px var(--shadow-color-content);
 
         background-color: var(--color-content);
 
@@ -127,6 +131,10 @@ main {
 
 .resume__box,
 .skills__box {
+    
+    opacity: 0;
+    transition: none;
+
     padding: 0px 0px 80px;
 
     .title-box {
@@ -369,7 +377,7 @@ main {
 
             font-weight: 500;
             font-size: 18px;
-            padding: 10px;
+            padding: 10px 15px 10px 10px;
             line-height: 22px;
             color: var(--color-click-text);
             box-shadow: 0px 2px 6px var(--color-click-shadow);
@@ -594,6 +602,168 @@ main {
 
 }
 
+
+.content__config {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+
+    .dark-mode__input {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        label {
+            width: 60px;
+            height: 34px;
+            position: relative;
+            display: block;
+            background: var(--color-input-slide);
+            border-radius: 26px;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:after {
+                content: "";
+                width: 24px;
+                height: 24px;
+                position: absolute;
+                top: 5px;
+                left: 5px;
+                background: var(--color-click-text);
+                border-radius: 24px;
+                box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+                transition: 0.3s;
+            }
+
+            svg {
+                position: absolute;
+                width: 18px;
+                top: 8px;
+                z-index: 2;
+
+                &.sun {
+                    opacity: 1;
+                    left: 8px;
+                    fill: var(--color-click-block);
+                    transition: 0.3s;
+                    transform: rotate(0deg);
+                }
+
+                &.moon {
+                    top: 10px;
+                    width: 14px;
+                    opacity: 0;
+                    left: 8px;
+                    transition: 0.3s;
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        input {
+            width: 0;
+            height: 0;
+            visibility: hidden;
+            display: none;
+
+            &:checked+label {
+
+                &:after {
+                    left: 32px;
+                    background: var(--color-click-block);
+                }
+
+                svg {
+                    &.sun {
+                        left: 38px;
+                        opacity: 0;
+                        transform: rotate(-180deg);
+                    }
+
+                    &.moon {
+                        opacity: 1;
+                        left: 38px;
+                        fill: var(--color-click-text);
+                        transform: rotate(0deg);
+                    }
+                }
+            }
+
+        }
+
+
+
+
+    }
+}
+
+
+
+.lang-select__select {
+
+    &.custom__select {
+        position: relative;
+        width: 42px;
+        height: 34px;
+
+        .lang-select {
+            position: absolute;
+            width: 42px;
+            height: 34px;
+            background: var(--color-input-slide);
+            border-radius: 15px;
+            border: 0.5px solid rgba(202, 219, 226, 0.40);
+            box-shadow: 0px 3px 6px rgba(79, 104, 113, 0.20);
+            overflow: hidden;
+            transition: height 0.2s cubic-bezier(.46, 0, 0, 1.17), border-radius 0.2s cubic-bezier(.46, 0, 0, 1.17), box-shadow 0.2s cubic-bezier(.46, 0, 0, 1.17);
+
+
+            
+            &:hover {
+                height: 70px;
+                box-shadow: 0px 7px 10px rgba(79, 104, 113, 0.30);
+            }
+
+            ul {
+                list-style-type: none;
+                position: relative;
+
+                li {
+                    opacity: 1;
+                    transition: opacity 0.2s cubic-bezier(.46, 0, 0, 1.17);
+
+                    &:first-child {
+                        img {
+                            cursor: default;
+                        }
+                    }
+
+                    img {
+
+                        width: 25px;
+                        height: 23px;
+
+                        display: block;
+                        transform: translate(-116%, -50%);
+                        margin-bottom: 6px;
+
+                        border-radius: 10px;
+                        border: 2px solid var(--color-input-slide);
+
+                        cursor: pointer;
+                        transition: all 0.1s cubic-bezier(.46, 0, 0, 1.17);
+
+                        &:hover {
+                            transform: translate(-116%, -50%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
     .attention__hover {

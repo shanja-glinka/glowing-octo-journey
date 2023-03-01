@@ -5,6 +5,7 @@
   --color-title-min: #424242;
   --color-main: #818181;
   --color-content: #DBDBDB;
+  --color-input-slide: #343434;
   --color-click-block: #454545;
   --color-click-text: #C4C4C4;
   --color-click-block-filter: #45454538;
@@ -12,13 +13,14 @@
   --shadow-color-content: rgba(0, 0, 0, 0.726);
 }
 
-html[data-theme='dark'] {
+html[data-theme="dark"] {
   --color-bg: #ffffff;
   --color-title: #343434;
   --color-descr: #4e4e4e;
   --color-title-min: #424242;
   --color-main: #818181;
-  --color-content: #DBDBDB;
+  --color-content: #343434;
+  --color-input-slide: #DBDBDB;
   --color-click-block: #454545;
   --color-click-text: #C4C4C4;
   --color-click-block-filter: #4545450a;
@@ -71,8 +73,8 @@ main .content {
   width: 1300px;
   max-width: 1300px;
   min-height: 1000px;
-  -webkit-box-shadow: 0px 24px 36px var(----shadow-color-content);
-          box-shadow: 0px 24px 36px var(----shadow-color-content);
+  -webkit-box-shadow: 0px 24px 36px var(--shadow-color-content);
+          box-shadow: 0px 24px 36px var(--shadow-color-content);
   background-color: var(--color-content);
 }
 
@@ -144,6 +146,9 @@ main .content .resume .resume__skills {
 
 .resume__box,
 .skills__box {
+  opacity: 0;
+  -webkit-transition: none;
+  transition: none;
   padding: 0px 0px 80px;
 }
 
@@ -470,7 +475,7 @@ main .content .resume .resume__skills {
   border-radius: 15px;
   font-weight: 500;
   font-size: 18px;
-  padding: 10px;
+  padding: 10px 15px 10px 10px;
   line-height: 22px;
   color: var(--color-click-text);
   -webkit-box-shadow: 0px 2px 6px var(--color-click-shadow);
@@ -706,6 +711,173 @@ main .content .resume .resume__skills {
   padding: 20px;
   overflow: hidden;
   word-wrap: break-word;
+}
+
+.content__config {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 10px;
+}
+
+.content__config .dark-mode__input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.content__config .dark-mode__input label {
+  width: 60px;
+  height: 34px;
+  position: relative;
+  display: block;
+  background: var(--color-input-slide);
+  border-radius: 26px;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.content__config .dark-mode__input label:after {
+  content: "";
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: var(--color-click-text);
+  border-radius: 24px;
+  -webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.content__config .dark-mode__input label svg {
+  position: absolute;
+  width: 18px;
+  top: 8px;
+  z-index: 2;
+}
+
+.content__config .dark-mode__input label svg.sun {
+  opacity: 1;
+  left: 8px;
+  fill: var(--color-click-block);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.content__config .dark-mode__input label svg.moon {
+  top: 10px;
+  width: 14px;
+  opacity: 0;
+  left: 8px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.content__config .dark-mode__input input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  display: none;
+}
+
+.content__config .dark-mode__input input:checked + label:after {
+  left: 32px;
+  background: var(--color-click-block);
+}
+
+.content__config .dark-mode__input input:checked + label svg.sun {
+  left: 38px;
+  opacity: 0;
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+
+.content__config .dark-mode__input input:checked + label svg.moon {
+  opacity: 1;
+  left: 38px;
+  fill: var(--color-click-text);
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.lang-select__select.custom__select {
+  position: relative;
+  width: 42px;
+  height: 34px;
+}
+
+.lang-select__select.custom__select .lang-select {
+  position: absolute;
+  width: 42px;
+  height: 34px;
+  background: var(--color-input-slide);
+  border-radius: 15px;
+  border: 0.5px solid rgba(202, 219, 226, 0.4);
+  -webkit-box-shadow: 0px 3px 6px rgba(79, 104, 113, 0.2);
+          box-shadow: 0px 3px 6px rgba(79, 104, 113, 0.2);
+  overflow: hidden;
+  -webkit-transition: height 0.2s cubic-bezier(0.46, 0, 0, 1.17), border-radius 0.2s cubic-bezier(0.46, 0, 0, 1.17), -webkit-box-shadow 0.2s cubic-bezier(0.46, 0, 0, 1.17);
+  transition: height 0.2s cubic-bezier(0.46, 0, 0, 1.17), border-radius 0.2s cubic-bezier(0.46, 0, 0, 1.17), -webkit-box-shadow 0.2s cubic-bezier(0.46, 0, 0, 1.17);
+  transition: height 0.2s cubic-bezier(0.46, 0, 0, 1.17), border-radius 0.2s cubic-bezier(0.46, 0, 0, 1.17), box-shadow 0.2s cubic-bezier(0.46, 0, 0, 1.17);
+  transition: height 0.2s cubic-bezier(0.46, 0, 0, 1.17), border-radius 0.2s cubic-bezier(0.46, 0, 0, 1.17), box-shadow 0.2s cubic-bezier(0.46, 0, 0, 1.17), -webkit-box-shadow 0.2s cubic-bezier(0.46, 0, 0, 1.17);
+}
+
+.lang-select__select.custom__select .lang-select:hover {
+  height: 70px;
+  -webkit-box-shadow: 0px 7px 10px rgba(79, 104, 113, 0.3);
+          box-shadow: 0px 7px 10px rgba(79, 104, 113, 0.3);
+}
+
+.lang-select__select.custom__select .lang-select ul {
+  list-style-type: none;
+  position: relative;
+}
+
+.lang-select__select.custom__select .lang-select ul li {
+  opacity: 1;
+  -webkit-transition: opacity 0.2s cubic-bezier(0.46, 0, 0, 1.17);
+  transition: opacity 0.2s cubic-bezier(0.46, 0, 0, 1.17);
+}
+
+.lang-select__select.custom__select .lang-select ul li:first-child img {
+  cursor: default;
+}
+
+.lang-select__select.custom__select .lang-select ul li img {
+  width: 25px;
+  height: 23px;
+  display: block;
+  -webkit-transform: translate(-116%, -50%);
+          transform: translate(-116%, -50%);
+  margin-bottom: 6px;
+  border-radius: 10px;
+  border: 2px solid var(--color-input-slide);
+  cursor: pointer;
+  -webkit-transition: all 0.1s cubic-bezier(0.46, 0, 0, 1.17);
+  transition: all 0.1s cubic-bezier(0.46, 0, 0, 1.17);
+}
+
+.lang-select__select.custom__select .lang-select ul li img:hover {
+  -webkit-transform: translate(-116%, -50%);
+          transform: translate(-116%, -50%);
 }
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {

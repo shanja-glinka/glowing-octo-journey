@@ -72,7 +72,7 @@ class ContentAnimation {
         return Math.abs(100 - parseInt(proc)).toString() + '%';
     }
 
-    fillSkillLines() {
+    fillSkillLines(timeout = 300) {
         let lines = document.querySelectorAll('.skills__box .skills__it-stacks .fill-line');
 
         if (!lines.length)
@@ -81,13 +81,42 @@ class ContentAnimation {
         lines.forEach(line => {
             setTimeout(() => {
                 line.style.right = this.getLineFillProc(line);
-            }, 300);
+            }, timeout);
         });
     }
 
-    run() {
-        this.fillSkillLines();
+    animateInElement(element) {
+        element.style.transform = 'scale(.8)';
+        element.style.opacity = 0;
+        setTimeout(() => {
+            element.style.transition = '.4s cubic-bezier(.46, 0, 0, 1.17)';
+            element.style.transform = 'scale(1)';
+            element.style.opacity = 1;
+        }, 100);
     }
+    
+    animateContent() {
+        let timeOutTick = Math.round(400 / document.querySelectorAll('.resume__box').length);
+        let timeOut = 0;
+
+        document.querySelectorAll('.resume__box').forEach(el => {
+            setTimeout(() => {
+                this.animateInElement(el);
+            }, timeOut);
+            timeOut += timeOutTick;
+        });
+        
+        timeOut = Math.round(400 / document.querySelectorAll('.skills__box').length);
+        document.querySelectorAll('.skills__box').forEach(el => {
+            timeOut += timeOutTick;
+            setTimeout(() => {
+                this.animateInElement(el);
+            }, timeOut);
+        });
+
+        return timeOut;
+    }
+
 }
 
 class Attentions {
@@ -174,18 +203,157 @@ class Attentions {
     }
 }
 
+class SelectDropDown {
+    constructor() {
+        this.container = null;
+        this.items = null;
+        this.selectedItem = null;
+    }
 
+    run(onSelectCall = null) {
+        this.container = document.getElementById('select-container');
+        this.items = this.container.getElementsByTagName('ul')[0].getElementsByTagName('li');
+        this.selectedItem = this.items[0];
+
+
+        let currentLang = document.documentElement.getAttribute('data-lang');
+
+        for (let el of this.items) {
+            el.addEventListener('click', () => {
+                this.onSelect(el, onSelectCall);
+            });
+
+            if (currentLang == el.getAttribute('lang-selection'))
+                this.onSelect(el);
+        }
+
+        this.hideSelected();
+    }
+
+
+    onSelect(item, onSelectCall = null) {
+        this.showUnselected();
+        this.selectedItem.innerHTML = item.innerHTML;
+        this.selectedItem.setAttribute('lang-selection', item.getAttribute('lang-selection'));
+        this.selectedItem.setAttribute('tooltip', item.getAttribute('tooltip'));
+        this.hideSelected();
+        this.unwrapSelector();
+
+        if (typeof onSelectCall === 'function')
+            onSelectCall(item.getAttribute('lang-selection'));
+
+    }
+
+    unwrapSelector() {
+        this.container.style.pointerEvents = 'none';
+        setTimeout(() => this.container.style.pointerEvents = 'auto', 200);
+    }
+
+    showUnselected() {
+        let selectedLangCode = this.selectedItem.getAttribute('lang-selection')
+
+        for (let i = 1; i < this.items.length; i++) {
+            if (this.items[i].getAttribute('lang-selection') == selectedLangCode) {
+                this.items[i].style.opacity = '1';
+                this.items[i].style.display = '';
+                break;
+            }
+        }
+    }
+
+    hideSelected() {
+        let selectedLangCode = this.selectedItem.getAttribute('lang-selection');
+
+        for (let i = 1; i < this.items.length; i++) {
+            if (this.items[i].getAttribute('lang-selection') == selectedLangCode) {
+                this.items[i].style.opacity = '0';
+                setTimeout(() => this.items[i].style.display = 'none', 200)
+                break;
+            }
+        }
+    }
+}
+
+class LanguagePage {
+    constructor() {
+        this.dictionaries = (typeof dictionaries === 'undefined' ? ['RU-ru', 'EN-en'] : dictionaries);
+
+        this.installPageLanguage();
+    }
+
+    getPageLang() {
+        return sessionStorage.getItem('user-language');
+    }
+
+    setPageLang(lang) {
+        return sessionStorage.setItem('user-language', lang);
+    }
+
+    changeLanguage(lang = null) {
+
+        console.log(this.dictionaries);
+        if (lang === null)
+            lang = this.getPageLang();
+        else if (this.dictionaries.indexOf(lang) === -1 || lang == this.getPageLang())
+            return;
+
+        this.setPageLang(lang);
+
+        translator.translatePage();
+        location.reload();
+    }
+
+    installPageLanguage() {
+        if (!this.getPageLang())
+            sessionStorage.setItem('user-language', this.dictionaries[0]);
+
+        document.documentElement.setAttribute('data-lang', this.getPageLang());
+    }
+}
+
+
+
+const dictionaries = ['RU-ru', 'EN-en'];
 const translator = new Translator();
 const contentAnimation = new ContentAnimation();
 const attentions = new Attentions();
+const customSelect = new SelectDropDown();
+const languagePage = new LanguagePage();
+
+
+const darkModeToogle = () => {
+
+    if (sessionStorage.getItem('darkmode') == 1) {
+        document.querySelector('#darkmode-toggle').checked = (sessionStorage.getItem('darkmode') == 1 ? true : false);
+        document.documentElement.setAttribute('data-theme', sessionStorage.getItem('darkmode') == 1 ? 'dark' : 'light');
+    }
+
+
+    document.querySelector('#darkmode-toggle').addEventListener('change', () => {
+        let trig = (document.querySelector('#darkmode-toggle').checked + 0);
+
+        sessionStorage.setItem('darkmode', trig);
+        document.documentElement.setAttribute('data-theme', trig === 1 ? 'dark' : 'light');
+
+    });
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    translator.initTranslate('RU-ru', () => {
-        translator.translatePage();
+    translator.initTranslate(languagePage.getPageLang(), () => {
         attentions.init();
-        contentAnimation.run();
+        customSelect.run((lang) => {
+            languagePage.changeLanguage(lang)
+        });
+        translator.translatePage();
     });
-
-
 });
+
+let timeOut = 0;
+
+
+darkModeToogle();
+
+timeOut = contentAnimation.animateContent();
+
+contentAnimation.fillSkillLines(timeOut);
