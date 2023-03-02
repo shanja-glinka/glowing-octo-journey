@@ -327,9 +327,9 @@ class LanguagePage {
             return;
 
         this.setPageLang(lang);
-        
+
         location.reload();
-        
+
         return;
 
         translator.translatePage();
@@ -343,28 +343,33 @@ class LanguagePage {
     }
 }
 
+class DocumentTheme {
+    constructor() {
+        if (document.documentElement.getAttribute('data-theme') === 'dark' && localStorage.getItem('darkmode') == null)
+            this.darkModeChange(1);
+    }
 
 
-const darkModeToogle = () => {
-
-    let toggleElement = document.querySelector('#darkmode-toggle');
-
-    if (localStorage.getItem('darkmode') == 1)
-        document.documentElement.setAttribute('data-theme', localStorage.getItem('darkmode') == 1 ? 'dark' : 'light');
-
-    if (!toggleElement)
-        return;
-
-    toggleElement.checked = (localStorage.getItem('darkmode') == 1 ? true : false);
-    toggleElement.addEventListener('change', () => {
-        let trig = (toggleElement.checked + 0);
-
+    darkModeChange(trig) {
         localStorage.setItem('darkmode', trig);
         document.documentElement.setAttribute('data-theme', trig === 1 ? 'dark' : 'light');
+    }
 
-    });
+    initToogle() {
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('darkmode') == 1 ? 'dark' : 'light');
+
+        let toggleElement = document.querySelector('#darkmode-toggle');
+
+        if (!toggleElement)
+            return;
+
+        toggleElement.checked = (localStorage.getItem('darkmode') == 1 ? true : false);
+
+        toggleElement.addEventListener('change', () => {
+            this.darkModeChange(toggleElement.checked + 0);
+        });
+    }
 }
-
 
 class MobileView {
 
@@ -396,7 +401,6 @@ class MobileView {
         new BurgersScripts(el);
     }
 }
-
 
 class BurgersScripts {
     constructor(burger) {
@@ -466,7 +470,7 @@ class BurgerOverlay {
 
         this.getUnderOverlay().classList.remove('under_open');
         document.querySelector('.content').classList.remove('under_open');
-        
+
         this.getOverlay().setAttribute('data-overlay-view', 1);
 
     }
@@ -517,7 +521,7 @@ const attentions = new Attentions();
 const customSelect = new SelectDropDown();
 const languagePage = new LanguagePage();
 const mobileView = new MobileView();
-
+const documentTheme = new DocumentTheme();
 
 
 
@@ -545,4 +549,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-darkModeToogle();
+documentTheme.initToogle();
