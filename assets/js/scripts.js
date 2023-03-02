@@ -94,7 +94,7 @@ class ContentAnimation {
             element.style.opacity = 1;
         }, 100);
     }
-    
+
     animateContent() {
         let timeOutTick = Math.round(400 / document.querySelectorAll('.resume__box').length);
         let timeOut = 0;
@@ -105,7 +105,7 @@ class ContentAnimation {
             }, timeOut);
             timeOut += timeOutTick;
         });
-        
+
         timeOut = Math.round(400 / document.querySelectorAll('.skills__box').length);
         document.querySelectorAll('.skills__box').forEach(el => {
             timeOut += timeOutTick;
@@ -208,12 +208,38 @@ class SelectDropDown {
         this.container = null;
         this.items = null;
         this.selectedItem = null;
+
+        this.containerSelector = 'select-container';
+    }
+
+    dropDownRemove(e) {
+        if (!this.container.classList.contains('hover'))
+            return;
+
+        if (e.target.getAttribute('id') === this.containerSelector)
+            return this.container.classList.remove('hover');
+
+        this.container.childNodes.forEach((el) => {
+            if (el == e.target)
+                return this.container.classList.remove('hover');
+        });
+    }
+
+    dropDownClick(e) {
+        this.container.classList.toggle('hover');
     }
 
     run(onSelectCall = null) {
-        this.container = document.getElementById('select-container');
+        this.container = document.getElementById(this.containerSelector);
         this.items = this.container.getElementsByTagName('ul')[0].getElementsByTagName('li');
         this.selectedItem = this.items[0];
+
+        this.container.addEventListener('click', (e) => {
+            this.dropDownClick(e);
+        });
+        document.querySelector('.content').addEventListener('click', (e) => {
+            this.dropDownRemove(e);
+        });
 
 
         let currentLang = document.documentElement.getAttribute('data-lang');
@@ -291,7 +317,6 @@ class LanguagePage {
 
     changeLanguage(lang = null) {
 
-        console.log(this.dictionaries);
         if (lang === null)
             lang = this.getPageLang();
         else if (this.dictionaries.indexOf(lang) === -1 || lang == this.getPageLang())
@@ -357,3 +382,5 @@ darkModeToogle();
 timeOut = contentAnimation.animateContent();
 
 contentAnimation.fillSkillLines(timeOut);
+
+// alert('make letter and mobile styles');
