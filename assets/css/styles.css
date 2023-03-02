@@ -16,6 +16,7 @@
   --blac-line-shadow: rgba(0, 0, 0, 0.25);
   --color-shadow-attention: var(--color-click-shadow);
   --color-attention-bg: #45454538;
+  --color-unser_open-bg: #868686;
 }
 
 html[data-theme="dark"] {
@@ -36,6 +37,7 @@ html[data-theme="dark"] {
   --blac-line-shadow: rgba(0, 0, 0, 0.25);
   --color-shadow-attention: var(--color-click-shadow);
   --color-attention-bg: #6d6d6d38;
+  --color-unser_open-bg: rgb(44, 44, 44);
 }
 
 html,
@@ -123,6 +125,10 @@ main .content .resume {
   width: 100%;
 }
 
+.resume .resume__about .mobile-burger {
+  display: none;
+}
+
 .resume .resume__divideline {
   position: relative;
   width: 0px;
@@ -152,6 +158,10 @@ main .content .resume {
           flex-direction: column;
   width: 340px;
   min-width: 340px;
+}
+
+.resume .resume__skills .mobile-burger {
+  display: none;
 }
 
 .resume__box,
@@ -231,7 +241,6 @@ main .content .resume {
           align-items: center;
   padding: 0px;
   gap: 10px;
-  width: 660px;
   height: 26px;
 }
 

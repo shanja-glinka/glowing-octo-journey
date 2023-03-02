@@ -342,19 +342,11 @@ class LanguagePage {
 
 
 
-const dictionaries = ['RU-ru', 'EN-en'];
-const translator = new Translator();
-const contentAnimation = new ContentAnimation();
-const attentions = new Attentions();
-const customSelect = new SelectDropDown();
-const languagePage = new LanguagePage();
-
-
 const darkModeToogle = () => {
 
     let toggleElement = document.querySelector('#darkmode-toggle');
 
-    if (localStorage.getItem('darkmode') == 1) 
+    if (localStorage.getItem('darkmode') == 1)
         document.documentElement.setAttribute('data-theme', localStorage.getItem('darkmode') == 1 ? 'dark' : 'light');
 
     if (!toggleElement)
@@ -371,23 +363,175 @@ const darkModeToogle = () => {
 }
 
 
+class MobileView {
+
+    install() {
+
+        this.burgerOverlay = new BurgerOverlay();
+
+        this.getBurgers().forEach(el => {
+            el.addEventListener('click', (e) => {
+                this.burgerClickToggle(e, el);
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            this.onResize();
+        });
+    }
+
+    getBurgers() {
+        return document.querySelectorAll('.mobile-burger');
+    }
+
+
+    onResize() {
+        this.burgerOverlay.resize();
+    }
+
+    burgerClickToggle(e, el) {
+        new BurgersScripts(el);
+    }
+}
+
+
+class BurgersScripts {
+    constructor(burger) {
+        this.burger = burger;
+        this.script = burger.getAttribute('data-script');
+
+        this.scripts = {
+            "skills-overlay": new BurgerOverlay
+        }
+
+        this.runScript();
+    }
+
+    runScript() {
+        if (typeof this.scripts[this.script] !== 'undefined')
+            this.scripts[this.script].run();
+        else
+            this.burger.classList.toggle('active');
+    }
+}
+
+class BurgerOverlay {
+
+    constructor() {
+        let view = 0;
+
+        if (window.innerWidth < 1101)
+            view = 1;
+
+        if (window.innerWidth < 401)
+            view = 2;
+
+        if (view > 0)
+            this.getOverlay().setAttribute('data-overlay-view', view);
+    }
+
+
+
+    getUnderOverlay() {
+        return document.querySelector('.resume__about');
+    }
+
+    getOverlay() {
+        return document.querySelector('.resume__skills');
+    }
+
+    getBurgers() {
+        return document.querySelectorAll('[data-script="skills-overlay"]');
+    }
+
+
+
+    isOverlayOpen() {
+        let view = this.getOverlay().getAttribute('data-overlay-view');
+        return (view == 1 || view == 2);
+    }
+
+
+
+    reset() {
+        this.getBurgers().forEach(burger => {
+            burger.classList.remove('active');
+        });
+
+        this.getUnderOverlay().classList.remove('under_open');
+        document.querySelector('.content').classList.remove('under_open');
+        
+        this.getOverlay().setAttribute('data-overlay-view', 1);
+
+    }
+
+    resize() {
+        let overlay = this.getOverlay();
+
+        if (!overlay.getAttribute('data-overlay-view'))
+            return;
+
+        if (window.innerWidth > 1100) {
+            this.reset();
+        }
+    }
+
+    overlayToggle() {
+        let overlay = this.getOverlay();
+
+        if (!overlay.getAttribute('data-overlay-view'))
+            return this.reset();
+
+
+        this.getUnderOverlay().classList.toggle('under_open');
+        document.querySelector('.content').classList.toggle('under_open');
+        overlay.classList.toggle('open');
+    }
+
+    run() {
+
+        this.overlayToggle();
+        this.getBurgers().forEach(burger => {
+            burger.classList.toggle('active');
+        });
+
+    }
+}
+
+
+
+
+const dictionaries = ['RU-ru', 'EN-en'];
+const translator = new Translator();
+const contentAnimation = new ContentAnimation();
+const attentions = new Attentions();
+const customSelect = new SelectDropDown();
+const languagePage = new LanguagePage();
+const mobileView = new MobileView();
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     translator.initTranslate(languagePage.getPageLang(), () => {
+
         attentions.init();
         customSelect.run((lang) => {
             languagePage.changeLanguage(lang)
         });
+
         translator.translatePage();
+        mobileView.install();
+
+
+        let timeOut = contentAnimation.animateContent();
+
+        contentAnimation.fillSkillLines(timeOut);
     });
 });
 
-let timeOut = 0;
-
 
 darkModeToogle();
-
-timeOut = contentAnimation.animateContent();
-
-contentAnimation.fillSkillLines(timeOut);
-
-// alert('make letter and mobile styles');

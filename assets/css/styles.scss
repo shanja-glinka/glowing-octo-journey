@@ -25,6 +25,8 @@ $basic-text-style: 16px;
 
     --color-shadow-attention: var(--color-click-shadow);
     --color-attention-bg: #45454538;
+
+    --color-unser_open-bg: #868686;
 }
 
 html[data-theme="dark"] {
@@ -52,6 +54,9 @@ html[data-theme="dark"] {
 
     --color-shadow-attention: var(--color-click-shadow);
     --color-attention-bg: #6d6d6d38;
+
+    
+    --color-unser_open-bg: rgb(44, 44, 44);
 }
 
 
@@ -119,6 +124,10 @@ main {
         display: flex;
         flex-direction: column;
         width: 100%;
+
+        .mobile-burger {
+            display: none;
+        }
     }
 
     .resume__divideline {
@@ -144,7 +153,13 @@ main {
         flex-direction: column;
         width: 340px;
         min-width: 340px;
+
+        
+        .mobile-burger {
+            display: none;
+        }
     }
+
 }
 
 
@@ -208,7 +223,7 @@ main {
     padding: 0px;
     gap: 10px;
 
-    width: 660px;
+    // width: 660px;
     height: 26px;
 
     .resume__descr-block {
