@@ -327,9 +327,12 @@ class LanguagePage {
             return;
 
         this.setPageLang(lang);
+        
+        location.reload();
+        
+        return;
 
         translator.translatePage();
-        location.reload();
     }
 
     installPageLanguage() {
