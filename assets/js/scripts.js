@@ -418,6 +418,9 @@ class BurgersScripts {
 class BurgerOverlay {
 
     constructor() {
+        if (!this.getOverlay())
+            return;
+
         let view = 0;
 
         if (window.innerWidth < 1101)
@@ -467,6 +470,9 @@ class BurgerOverlay {
 
     resize() {
         let overlay = this.getOverlay();
+
+        if (!overlay)
+            return;
 
         if (!overlay.getAttribute('data-overlay-view'))
             return;
@@ -524,7 +530,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         translator.translatePage();
-        mobileView.install();
+
+        if (document.querySelector('.resume__skills'))
+            mobileView.install();
 
 
         let timeOut = contentAnimation.animateContent();

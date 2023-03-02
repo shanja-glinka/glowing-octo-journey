@@ -49,6 +49,9 @@
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
+  main .content .letter {
+    padding: 150px 70px 40px 70px;
+  }
   .resume .resume__about {
     -webkit-transition: 0.6s cubic-bezier(0.46, 0, 0, 1.17);
     transition: 0.6s cubic-bezier(0.46, 0, 0, 1.17);
@@ -159,6 +162,26 @@
     bottom: 0px;
     top: 0px;
   }
+  .letter .letter__hello h1 {
+    font-size: 120px;
+    line-height: 148px;
+  }
+  .letter .letter__hello h3 {
+    font-size: 35px;
+    line-height: 44px;
+  }
+  .letter .letter__write {
+    padding: 0px 60px 50px 70px;
+    gap: 30px;
+  }
+  .letter .letter__write p {
+    font-size: 17px;
+    line-height: 27px;
+  }
+  .letter .letter__contacts .contacts__block a {
+    font-size: 17px;
+    line-height: 22px;
+  }
 }
 
 @media (max-width: 815px) {
@@ -180,6 +203,33 @@
   }
 }
 
+@media (max-width: 650px) {
+  main .content .letter {
+    padding: 150px 60px 40px 60px;
+  }
+  .letter .letter__hello h1 {
+    font-size: 100px;
+    line-height: 124px;
+  }
+  .letter .letter__hello h3 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .letter .letter__write {
+    padding: 0px 20px 50px 40px;
+    gap: 20px;
+  }
+  .letter .letter__write p {
+    font-size: 16px;
+    line-height: 25px;
+  }
+  .letter .letter__contacts .contacts__block a {
+    font-size: 16px;
+    line-height: 20px;
+    gap: 4px;
+  }
+}
+
 @media (max-width: 500px) {
   main {
     margin: 50px 0 0 0;
@@ -190,6 +240,9 @@
   main .content .resume .resume__divideline {
     margin-left: 0px;
     margin-right: 0px;
+  }
+  main .content .letter {
+    padding: 100px 30px 30px 30px;
   }
   .resume__about-name h1 {
     font-size: 36px;
@@ -317,6 +370,35 @@
     font-size: 14px;
     line-height: 17px;
   }
+  .letter .letter__hr {
+    position: relative;
+    width: 100%;
+    padding: 20px 0px 60px 0px;
+  }
+  .letter .letter__contacts .contacts__block a {
+    gap: 3px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media (max-width: 480px) {
+  .letter .letter__hello h3 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .letter .letter__hello h1 {
+    font-size: 80px;
+    line-height: 104px;
+  }
+  .letter .letter__write {
+    padding: 0px 10px 20px 30px;
+    gap: 20px;
+  }
+  .letter .letter__write p {
+    font-size: 15px;
+    line-height: 21px;
+  }
 }
 
 @media (max-width: 400px) {
@@ -329,6 +411,9 @@
   main .content .resume .resume__divideline {
     margin-left: 0px;
     margin-right: 0px;
+  }
+  main .content .letter {
+    padding: 80px 20px 30px 20px;
   }
   .resume__about-name h1 {
     font-size: 32px;
@@ -405,6 +490,14 @@
     padding: 0 0 0 20px;
     gap: 20px;
   }
+  .letter .letter__hello h1 {
+    font-size: 58px;
+    line-height: 84px;
+  }
+  .letter .letter__hello h3 {
+    font-size: 20px;
+    line-height: 19px;
+  }
 }
 
 @media (max-width: 380px) {
@@ -415,6 +508,10 @@
     padding: 50px 20px 0px 20px;
     -webkit-transform: rotateY(90deg) translateX(100%) translateZ(156px);
             transform: rotateY(90deg) translateX(100%) translateZ(156px);
+  }
+  .letter .letter__write {
+    padding: 0px 10px 20px 10px;
+    gap: 20px;
   }
 }
 /*# sourceMappingURL=mobile.css.map */

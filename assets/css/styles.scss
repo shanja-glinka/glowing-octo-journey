@@ -55,7 +55,7 @@ html[data-theme="dark"] {
     --color-shadow-attention: var(--color-click-shadow);
     --color-attention-bg: #6d6d6d38;
 
-    
+
     --color-unser_open-bg: rgb(44, 44, 44);
 }
 
@@ -154,7 +154,7 @@ main {
         width: 340px;
         min-width: 340px;
 
-        
+
         .mobile-burger {
             display: none;
         }
@@ -824,5 +824,124 @@ main {
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         color: var(--color-descr);
+    }
+}
+
+
+main {
+    .letter {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-self: flex-start;
+        padding: 250px 100px 50px 100px;
+    }
+}
+
+
+.letter {
+
+    .letter__hello {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-self: flex-start;
+        padding-bottom: 50px;
+
+
+
+        h1 {
+            font-weight: 700;
+            font-size: 140px;
+            line-height: 168px;
+            color: var(--color-title);
+        }
+
+        h3 {
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 48px;
+            color: var(--color-title);
+        }
+    }
+
+    .letter__write {
+        display: flex;
+        flex-direction: column;
+        padding: 0px 80px 50px 100px;
+        gap: 40px;
+
+        p {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 29px;
+            color: var(--color-title-min);
+            opacity: 0.6;
+        }
+    }
+
+    .letter__hr {
+        position: relative;
+        width: 100%;
+        padding: 50px 0px 100px 0px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-main);
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 2px;
+            // opacity: .2;
+        }
+    }
+
+
+    .letter__contacts {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-self: flex-start;
+        padding: 0px;
+        gap: 10px;
+
+        .contacts__block {
+            a {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 6px;
+
+
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 22px;
+                color: var(--color-main);
+
+                svg {
+                    path {
+                        fill: var(--color-main);
+                    }
+                }
+
+            }
+
+            &:first-child {
+                a {
+                    svg {
+
+                        path {
+                            width: 17px;
+                            height: 17px;
+                        }
+                    }
+                }
+            }
+
+        }
     }
 }
