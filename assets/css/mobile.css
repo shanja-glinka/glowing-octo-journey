@@ -50,8 +50,8 @@
             justify-content: space-between;
   }
   .resume .resume__about {
-    -webkit-transition: 0.5s cubic-bezier(0.46, 0, 0, 1.17);
-    transition: 0.5s cubic-bezier(0.46, 0, 0, 1.17);
+    -webkit-transition: 0.6s cubic-bezier(0.46, 0, 0, 1.17);
+    transition: 0.6s cubic-bezier(0.46, 0, 0, 1.17);
   }
   .resume .resume__about.under_open {
     opacity: .4;
