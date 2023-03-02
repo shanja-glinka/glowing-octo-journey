@@ -23,7 +23,7 @@ class Translator {
             return;
 
         translateElements.forEach(el => {
-            el.innerHTML += this.translate(el.getAttribute(this.translateAttribute));
+            el.innerHTML = this.translate(el.getAttribute(this.translateAttribute));
         });
     }
 
@@ -231,6 +231,10 @@ class SelectDropDown {
 
     run(onSelectCall = null) {
         this.container = document.getElementById(this.containerSelector);
+
+        if (!this.container)
+            return;
+
         this.items = this.container.getElementsByTagName('ul')[0].getElementsByTagName('li');
         this.selectedItem = this.items[0];
 
@@ -308,11 +312,11 @@ class LanguagePage {
     }
 
     getPageLang() {
-        return sessionStorage.getItem('user-language');
+        return localStorage.getItem('user-language');
     }
 
     setPageLang(lang) {
-        return sessionStorage.setItem('user-language', lang);
+        return localStorage.setItem('user-language', lang);
     }
 
     changeLanguage(lang = null) {
@@ -330,7 +334,7 @@ class LanguagePage {
 
     installPageLanguage() {
         if (!this.getPageLang())
-            sessionStorage.setItem('user-language', this.dictionaries[0]);
+            localStorage.setItem('user-language', this.dictionaries[0]);
 
         document.documentElement.setAttribute('data-lang', this.getPageLang());
     }
@@ -348,16 +352,19 @@ const languagePage = new LanguagePage();
 
 const darkModeToogle = () => {
 
-    if (sessionStorage.getItem('darkmode') == 1) {
-        document.querySelector('#darkmode-toggle').checked = (sessionStorage.getItem('darkmode') == 1 ? true : false);
-        document.documentElement.setAttribute('data-theme', sessionStorage.getItem('darkmode') == 1 ? 'dark' : 'light');
-    }
+    let toggleElement = document.querySelector('#darkmode-toggle');
 
+    if (localStorage.getItem('darkmode') == 1) 
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('darkmode') == 1 ? 'dark' : 'light');
 
-    document.querySelector('#darkmode-toggle').addEventListener('change', () => {
-        let trig = (document.querySelector('#darkmode-toggle').checked + 0);
+    if (!toggleElement)
+        return;
 
-        sessionStorage.setItem('darkmode', trig);
+    toggleElement.checked = (localStorage.getItem('darkmode') == 1 ? true : false);
+    toggleElement.addEventListener('change', () => {
+        let trig = (toggleElement.checked + 0);
+
+        localStorage.setItem('darkmode', trig);
         document.documentElement.setAttribute('data-theme', trig === 1 ? 'dark' : 'light');
 
     });
