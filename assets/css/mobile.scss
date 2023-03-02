@@ -102,6 +102,8 @@
             perspective: 200px;
             transform: rotateY(90deg) translateX(100%) translateZ(175px);
 
+            z-index: 14;
+
         }
 
         .resume__about,
@@ -200,7 +202,7 @@
         .content {
             width: auto !important;
             max-width: none !important;
-            
+
             transition: .6s cubic-bezier(.46, 0, 0, 1.17);
 
             &.under_open {

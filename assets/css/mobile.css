@@ -79,6 +79,7 @@
             perspective: 200px;
     -webkit-transform: rotateY(90deg) translateX(100%) translateZ(175px);
             transform: rotateY(90deg) translateX(100%) translateZ(175px);
+    z-index: 14;
   }
   .resume .resume__about .mobile-burger,
   .resume .resume__skills .mobile-burger {
