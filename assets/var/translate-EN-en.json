@@ -36,7 +36,8 @@
         }
     },
     "my-name": "Nikita Krasnov",
-    "web-developer": "web-programmer",
+    "web-developer": "Web-programmer, Full-stack developer",
+    "gis-city": "Russia, Yoshkar-Ola",
     "my-letter": "Letter to employer",
     "github-link": "GitHub",
     "skill-shorts": "I am engaged in backend and frontend development, both separately and fulstec. Most often, I developed APIs like REST and RPC for web applications and projects. I perform work on building full-fledged sites and web applications with my business logic without using frameworks",
@@ -81,5 +82,6 @@
     "award-worldskills-2019-descr": "Business Software Solutions",
     "skills-attentions": "the data displayed are subjective and carry a mapping of language knowledge with respect to C++",
     "skill-full": "My main experience with backend in C++, php, nodejs, as well as with frontend in pure JavaScript. Familiar with the syntax of GoLang and Python, but did not use them in work. I am also familiar with the Boost (C++) and React libraries, and the Laravel framework. There was no full experience with Laravel, the study of the framework was as part of attempts to search and assess the time for developing a solution for building a project, where there was an importance in the speed of development. I actively apply the principles of development: SOLID, KISS, DRY; the OOP development paradigm and I fully use GIT. Unfortunately, I have no experience with flexible software development methodologies such as Agile, Scrum and Waterfall. I am also familiar with the principles of business process modeling and am able to use the appropriate tools.",
-    "skill-knowledge": "Knowledge and experience"
+    "skill-knowledge": "Knowledge and experience",
+    "skills-links": "Links"
 }

@@ -158,6 +158,16 @@ main {
         .mobile-burger {
             display: none;
         }
+
+
+        p {
+            padding: 0;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 26px;
+
+            color: var(--color-descr);
+        }
     }
 
 }
@@ -170,6 +180,7 @@ main {
     transition: none;
 
     padding: 0px 0px 80px;
+    transition: all 0.4s cubic-bezier(0.46, 0, 0, 1.17) 0s;
 
     .title-box {
         padding: 10px 0px 30px;
@@ -202,26 +213,50 @@ main {
     }
 }
 
-.resume__about-name {
-    padding: 10px 0px;
+.resume__profile {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 50px;
 
-    h1 {
-        font-style: normal;
-        font-weight: 700;
-        font-size: 45px;
-        line-height: 54px;
 
-        color: var(--color-title);
+    .resume__profile-image {
+        img {
+            display: block;
+            border-radius: 50%;
+            object-fit: cover;
+            text-align: center;
+            width: 126px;
+            height: 126px;
+            box-shadow: 0px 0px 6px var(--color-click-shadow);
+        }
     }
+
+    .resume__profile-data {}
+
+    .resume__about-name {
+        padding: 0px 0px 10px 0px;
+
+        h1 {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 45px;
+            line-height: 54px;
+
+            color: var(--color-title);
+        }
+    }
+
 }
+
+
 
 .resume__about-descr {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
     padding: 0px;
-    gap: 10px;
 
     // width: 660px;
     height: 26px;
@@ -232,76 +267,23 @@ main {
         align-items: center;
         padding: 0;
         margin: 0;
-        text-decoration: none;
-
-        padding: 0px 10px;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            bottom: 0px;
-            width: 2px;
-            background-color: var(--color-title-min);
-            border-radius: 2px;
-        }
 
         span,
         a {
             text-decoration: none;
             font-weight: 400;
-            font-size: 20px;
-            line-height: 24px;
-            color: var(--color-title-min);
-        }
-
-
-        span:first-child {
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-
-
-        svg {
-            margin-right: 6px;
-
-            path {
-                fill: var(--color-svg-descr);
-            }
-        }
-
-        svg {
-            margin-right: 6px;
-
-            path {
-                fill: var(--color-svg-descr);
-            }
-        }
-
-        &:nth-child(2) {
-            svg {
-                margin-right: 6px;
-
-                path {
-                    stroke: var(--color-svg-descr);
-                }
-            }
+            font-size: 18px;
+            color: var(--color-descr);
         }
 
         &:first-child {
-            border-left: none;
-            padding: 0px 10px 0px 0px;
-        }
 
-        &:first-child::before {
-            display: none;
-        }
-
-        &:hover {
-            transition: .2s cubic-bezier(.46, 0, 0, 1.17);
-            transform: scale(1.01);
-            filter: brightness(105%);
+            span,
+            a {
+                font-weight: 500;
+                font-size: 20px;
+                padding: 0px 0px 4px 0px;
+            }
         }
 
     }
@@ -449,7 +431,8 @@ main {
 
         }
 
-        &:first-child {
+
+        &.svg_fill_remove {
             a {
                 svg {
 
@@ -461,6 +444,17 @@ main {
             }
         }
 
+        &.svg_stroke_remove {
+            a {
+                svg {
+
+                    path {
+                        fill: var(--color-click-text);
+                        stroke: none;
+                    }
+                }
+            }
+        }
 
         &:hover {
             transition: .2s cubic-bezier(.46, 0, 0, 1.17);

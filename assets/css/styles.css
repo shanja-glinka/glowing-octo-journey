@@ -164,12 +164,22 @@ main .content .resume {
   display: none;
 }
 
+.resume .resume__skills p {
+  padding: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--color-descr);
+}
+
 .resume__box,
 .skills__box {
   opacity: 0;
   -webkit-transition: none;
   transition: none;
   padding: 0px 0px 80px;
+  -webkit-transition: all 0.4s cubic-bezier(0.46, 0, 0, 1.17) 0s;
+  transition: all 0.4s cubic-bezier(0.46, 0, 0, 1.17) 0s;
 }
 
 .resume__box .title-box,
@@ -214,11 +224,37 @@ main .content .resume {
           filter: brightness(160%);
 }
 
-.resume__about-name {
-  padding: 10px 0px;
+.resume__profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 50px;
 }
 
-.resume__about-name h1 {
+.resume__profile .resume__profile-image img {
+  display: block;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  text-align: center;
+  width: 126px;
+  height: 126px;
+  -webkit-box-shadow: 0px 0px 6px var(--color-click-shadow);
+          box-shadow: 0px 0px 6px var(--color-click-shadow);
+}
+
+.resume__profile .resume__about-name {
+  padding: 0px 0px 10px 0px;
+}
+
+.resume__profile .resume__about-name h1 {
   font-style: normal;
   font-weight: 700;
   font-size: 45px;
@@ -230,17 +266,16 @@ main .content .resume {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   padding: 0px;
-  gap: 10px;
   height: 26px;
 }
 
@@ -254,75 +289,21 @@ main .content .resume {
           align-items: center;
   padding: 0;
   margin: 0;
-  text-decoration: none;
-  padding: 0px 10px;
-}
-
-.resume__about-descr .resume__descr-block::before {
-  content: '';
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  bottom: 0px;
-  width: 2px;
-  background-color: var(--color-title-min);
-  border-radius: 2px;
 }
 
 .resume__about-descr .resume__descr-block span,
 .resume__about-descr .resume__descr-block a {
   text-decoration: none;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  color: var(--color-title-min);
+  font-size: 18px;
+  color: var(--color-descr);
 }
 
-.resume__about-descr .resume__descr-block span:first-child {
-  text-transform: uppercase;
+.resume__about-descr .resume__descr-block:first-child span,
+.resume__about-descr .resume__descr-block:first-child a {
   font-weight: 500;
-}
-
-.resume__about-descr .resume__descr-block svg {
-  margin-right: 6px;
-}
-
-.resume__about-descr .resume__descr-block svg path {
-  fill: var(--color-svg-descr);
-}
-
-.resume__about-descr .resume__descr-block svg {
-  margin-right: 6px;
-}
-
-.resume__about-descr .resume__descr-block svg path {
-  fill: var(--color-svg-descr);
-}
-
-.resume__about-descr .resume__descr-block:nth-child(2) svg {
-  margin-right: 6px;
-}
-
-.resume__about-descr .resume__descr-block:nth-child(2) svg path {
-  stroke: var(--color-svg-descr);
-}
-
-.resume__about-descr .resume__descr-block:first-child {
-  border-left: none;
-  padding: 0px 10px 0px 0px;
-}
-
-.resume__about-descr .resume__descr-block:first-child::before {
-  display: none;
-}
-
-.resume__about-descr .resume__descr-block:hover {
-  -webkit-transition: 0.2s cubic-bezier(0.46, 0, 0, 1.17);
-  transition: 0.2s cubic-bezier(0.46, 0, 0, 1.17);
-  -webkit-transform: scale(1.01);
-          transform: scale(1.01);
-  -webkit-filter: brightness(105%);
-          filter: brightness(105%);
+  font-size: 20px;
+  padding: 0px 0px 4px 0px;
 }
 
 .resume__short-skills {
@@ -529,9 +510,14 @@ main .content .resume {
   fill: var(--color-click-text);
 }
 
-.skills__contacts .contacts__block:first-child a svg path {
+.skills__contacts .contacts__block.svg_fill_remove a svg path {
   fill: none;
   stroke: var(--color-click-text);
+}
+
+.skills__contacts .contacts__block.svg_stroke_remove a svg path {
+  fill: var(--color-click-text);
+  stroke: none;
 }
 
 .skills__contacts .contacts__block:hover {
