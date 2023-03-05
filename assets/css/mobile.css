@@ -208,11 +208,6 @@
     top: -25px;
     left: calc(100% + 25px);
   }
-  .resume .resume__about.under_open {
-    opacity: .4;
-    -webkit-filter: none;
-            filter: none;
-  }
 }
 
 @media (max-width: 650px) {
