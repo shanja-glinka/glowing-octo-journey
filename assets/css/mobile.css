@@ -182,6 +182,13 @@
     font-size: 17px;
     line-height: 22px;
   }
+  .attention__hover {
+    z-index: 15;
+  }
+  .attention__hover p {
+    text-align: left;
+    padding: 12px;
+  }
 }
 
 @media (max-width: 815px) {
@@ -200,6 +207,11 @@
   .resume .resume__about .mobile-burger {
     top: -25px;
     left: calc(100% + 25px);
+  }
+  .resume .resume__about.under_open {
+    opacity: .4;
+    -webkit-filter: none;
+            filter: none;
   }
 }
 
@@ -228,6 +240,18 @@
     line-height: 20px;
     gap: 4px;
   }
+  .resume__profile {
+    gap: 0px;
+  }
+  .resume__profile .resume__profile-image {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .resume__about-descr {
+    height: auto;
+  }
 }
 
 @media (max-width: 500px) {
@@ -244,32 +268,21 @@
   main .content .letter {
     padding: 100px 30px 30px 30px;
   }
-  .resume__about-name h1 {
+  .resume__profile .resume__about-name h1 {
     font-size: 36px;
     line-height: unset;
   }
-  .resume__about-descr {
-    gap: 6px;
-    height: auto;
-  }
-  .resume__about-descr .resume__descr-block {
-    padding: 0px 5px;
-  }
-  .resume__about-descr .resume__descr-block:first-child {
-    border-left: none;
-    padding: 0px 5px 0px 0px;
-  }
   .resume__about-descr .resume__descr-block span,
   .resume__about-descr .resume__descr-block a {
-    text-decoration: none;
-    font-weight: 400;
     font-size: 18px;
     line-height: 20px;
     color: var(--color-title-min);
   }
-  .resume__about-descr .resume__descr-block svg {
-    -webkit-transform: scale(0.8);
-            transform: scale(0.8);
+  .resume__about-descr .resume__descr-block:first-child span,
+  .resume__about-descr .resume__descr-block:first-child a {
+    font-weight: 500;
+    font-size: 18px;
+    padding: 0;
   }
   .resume__short-skills {
     padding-top: 20px !important;
@@ -284,6 +297,10 @@
   }
   .resume .resume__skills {
     padding: 50px 40px 0px 40px;
+  }
+  .resume .resume__skills p {
+    font-size: 14px;
+    line-height: 22px;
   }
   .resume .resume__about .mobile-burger,
   .resume .resume__skills .mobile-burger {
@@ -415,32 +432,29 @@
   main .content .letter {
     padding: 80px 20px 30px 20px;
   }
-  .resume__about-name h1 {
+  .resume__profile .resume__about-name h1 {
     font-size: 32px;
     line-height: unset;
   }
   .resume__about-descr {
-    gap: 5px;
     height: auto;
-  }
-  .resume__about-descr .resume__descr-block {
-    padding: 0px 5px;
-  }
-  .resume__about-descr .resume__descr-block:first-child {
-    border-left: none;
-    padding: 0px 5px 0px 0px;
   }
   .resume__about-descr .resume__descr-block span,
   .resume__about-descr .resume__descr-block a {
-    text-decoration: none;
     font-weight: 400;
     font-size: 16px;
     line-height: 18px;
     color: var(--color-title-min);
   }
-  .resume__about-descr .resume__descr-block svg {
-    -webkit-transform: scale(0.8);
-            transform: scale(0.8);
+  .resume__about-descr .resume__descr-block:first-child span,
+  .resume__about-descr .resume__descr-block:first-child a {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .resume__skills p {
+    font-size: 14px;
+    line-height: 20px;
   }
   .resume__short-skills {
     padding-top: 20px !important;

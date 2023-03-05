@@ -13,14 +13,15 @@ class Translator {
         this.dictionary = null;
         this.requestPath = this.defaultLangPath + 'translate-' + this.language + '.json';
 
-        this.requestToTranslate(callback);
+        if (callback !== null)
+            this.requestToTranslate(callback);
     }
 
     translatePage() {
         let translateElements = document.querySelectorAll('[' + this.translateAttribute + ']');
 
         if (!translateElements)
-            return;
+            return console.log('Elements [' + this.translateAttribute + '] is not fond');
 
         translateElements.forEach(el => {
             el.innerHTML = this.translate(el.getAttribute(this.translateAttribute));
@@ -35,7 +36,7 @@ class Translator {
 
 
 
-    requestToTranslate(callback) {
+    requestToTranslate(callback = null) {
 
         this.dictionary = {};
 
@@ -89,14 +90,13 @@ class ContentAnimation {
         element.style.transform = 'scale(.8)';
         element.style.opacity = 0;
         setTimeout(() => {
-            element.style.transition = '.4s cubic-bezier(.46, 0, 0, 1.17)';
             element.style.transform = 'scale(1)';
             element.style.opacity = 1;
         }, 100);
     }
 
     animateContent() {
-        let timeOutTick = Math.round(400 / document.querySelectorAll('.resume__box').length);
+        let timeOutTick = Math.round(700 / document.querySelectorAll('.resume__box').length);
         let timeOut = 0;
 
         document.querySelectorAll('.resume__box').forEach(el => {
@@ -151,13 +151,11 @@ class Attentions {
 
             el.style.opacity = 0;
 
-            setTimeout(() => {
-                el.style.display = null;
-                el.style.top = null;
-                el.style.left = null;
-            }, 300);
-
+            el.style.display = null;
+            el.style.top = null;
+            el.style.left = null;
         });
+
     }
 
     attentionHide() {
@@ -166,6 +164,7 @@ class Attentions {
 
         this.hideAllAttentions();
 
+        this.lastCall = null;
     }
 
     attentionShow(callElement) {
@@ -174,7 +173,6 @@ class Attentions {
         if (attentionBlockElement.style.display === 'display')
             return;
 
-        // this.hideAllAttentions();
 
         this.lastCall = callElement;
 
@@ -185,20 +183,21 @@ class Attentions {
         let bodyHeight = document.querySelector('body').getBoundingClientRect();
         let rect2 = attentionBlockElement.getBoundingClientRect();
 
+        let styleTop = 0;
 
-        if (bodyHeight.bottom < rect.top + rect.height + rect2.height) {
-            attentionBlockElement.style.top = (rect.top - rect2.height) + 'px';
-        } else
-            attentionBlockElement.style.top = (rect.top + rect.height) + 'px';
+        if (bodyHeight.bottom < rect.top + rect.height + rect2.height)
+            styleTop = rect.top - rect2.height;
+        else
+            styleTop = rect.top + rect.height;
+
+        attentionBlockElement.style.top = (styleTop) + 'px';
         attentionBlockElement.style.left = rect.left + 'px';
         attentionBlockElement.style.opacity = 1;
 
-        setTimeout(() => {
+        this.mouseoutHandler = this.attentionHide.bind(this);
 
-            this.mouseoutHandler = this.attentionHide.bind(this);
-            callElement.addEventListener('mouseout', this.mouseoutHandler);
-            callElement.addEventListener('touchend', this.mouseoutHandler);
-        }, 100);
+        callElement.addEventListener('mouseout', this.mouseoutHandler);
+        callElement.addEventListener('touchend', this.mouseoutHandler);
 
     }
 }
@@ -249,6 +248,9 @@ class SelectDropDown {
         let currentLang = document.documentElement.getAttribute('data-lang');
 
         for (let el of this.items) {
+            if (el == this.selectedItem)
+                continue;
+
             el.addEventListener('click', () => {
                 this.onSelect(el, onSelectCall);
             });
@@ -309,6 +311,8 @@ class LanguagePage {
         this.dictionaries = (typeof dictionaries === 'undefined' ? ['RU-ru', 'EN-en'] : dictionaries);
 
         this.installPageLanguage();
+
+        this.translator = new Translator();
     }
 
     getPageLang() {
@@ -319,20 +323,25 @@ class LanguagePage {
         return localStorage.setItem('user-language', lang);
     }
 
-    changeLanguage(lang = null) {
+    changeLanguage(lang, callback = null) {
 
-        if (lang === null)
-            lang = this.getPageLang();
-        else if (this.dictionaries.indexOf(lang) === -1 || lang == this.getPageLang())
-            return;
+        if (this.dictionaries.indexOf(lang) === -1)
+            return console.log("Language '" + lang + "' is undefined");
 
         this.setPageLang(lang);
 
-        location.reload();
+
+        this.translator.initTranslate(lang, () => {
+            this.translator.translatePage();
+
+            if (typeof callback === 'function')
+                callback();
+        });
 
         return;
 
-        translator.translatePage();
+        location.reload();
+
     }
 
     installPageLanguage() {
@@ -350,9 +359,22 @@ class DocumentTheme {
     }
 
 
+    imageThemeChange(trig) {
+        let themeImageSrc = document.querySelector('.resume__profile-image img').src;
+        if (themeImageSrc.indexOf('-dark') !== -1 || themeImageSrc.indexOf('-light') !== -1) {
+
+            document.querySelector('.resume__profile-image img').src = themeImageSrc.replace(
+                trig === 1 ? '-light' : '-dark',
+                trig === 1 ? '-dark' : '-light'
+            );
+        }
+    }
+
     darkModeChange(trig) {
         localStorage.setItem('darkmode', trig);
         document.documentElement.setAttribute('data-theme', trig === 1 ? 'dark' : 'light');
+
+        this.imageThemeChange(trig);
     }
 
     initToogle() {
@@ -364,6 +386,7 @@ class DocumentTheme {
             return;
 
         toggleElement.checked = (localStorage.getItem('darkmode') == 1 ? true : false);
+        this.imageThemeChange(toggleElement.checked + 0);
 
         toggleElement.addEventListener('change', () => {
             this.darkModeChange(toggleElement.checked + 0);
@@ -515,7 +538,7 @@ class BurgerOverlay {
 
 
 const dictionaries = ['RU-ru', 'EN-en'];
-const translator = new Translator();
+// const translator = new Translator();
 const contentAnimation = new ContentAnimation();
 const attentions = new Attentions();
 const customSelect = new SelectDropDown();
@@ -529,14 +552,12 @@ const documentTheme = new DocumentTheme();
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    translator.initTranslate(languagePage.getPageLang(), () => {
+    languagePage.changeLanguage(languagePage.getPageLang(), () => {
 
         attentions.init();
         customSelect.run((lang) => {
             languagePage.changeLanguage(lang)
         });
-
-        translator.translatePage();
 
         if (document.querySelector('.resume__skills'))
             mobileView.install();
